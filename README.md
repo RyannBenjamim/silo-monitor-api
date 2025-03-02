@@ -78,7 +78,7 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
     }
     ```
     
-- ### **GET /users/:id**
+- **GET /users/:id**
   - **Descrição**: Retorna os dados de um usuário específico com base no ID.
   - **Exemplo de Resposta**:
     ```json
@@ -94,7 +94,7 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
     }
     ```
     
-- ### **PUT /users/:id**
+- **PUT /users/:id**
   - **Descrição**: Atualiza os dados de um usuário específico com base no ID.
   - **Parâmetros (body)**:
     ```json
@@ -114,7 +114,7 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
     }
     ```
 
-- ### **DELETE /users/:id**
+- **DELETE /users/:id**
   - **Descrição**: Remove um usuário específico com base no ID.
   - **Exemplo de Resposta**:
     ```json
@@ -165,7 +165,7 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
     }
     ```
 
-- ### **GET /silos/:id**
+- **GET /silos/:id**
   - **Descrição**: Retorna os dados de um silo específico com base no ID.
   - **Exemplo de Resposta**:
     ```json
@@ -180,7 +180,7 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
     }
     ```
 
-- ### **PUT /silos/:id**
+- **PUT /silos/:id**
   - **Descrição**: Atualiza o status de um silo específico com base no ID.
   - **Parâmetros (body)**:
     ```json
@@ -202,7 +202,7 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
     }
     ```
 
-- ### **DELETE /silos/:id**
+- **DELETE /silos/:id**
   - **Descrição**: Remove um silo específico com base no ID.
   - **Exemplo de Resposta**:
     ```json
