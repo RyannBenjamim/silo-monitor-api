@@ -9,6 +9,13 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
 - **Registros de Temperatura e Umidade**: Armazena e recupera dados de temperatura e umidade associados a cada silo.
 - **Proteção de Rotas**: Utiliza middlewares para proteger rotas sensíveis, garantindo que apenas usuários autenticados possam acessá-las.
 
+## Stacks Utilizadas
+
+- **Backend**: Desenvolvido com **Node.js** e **Express**, proporcionando uma base robusta e escalável para a API.
+- **Banco de Dados**: Utiliza **PostgreSQL** como banco de dados relacional, garantindo alta performance e confiabilidade no armazenamento de dados.
+- **ORM**: **Prisma ORM** é utilizado para gerenciar as operações de banco de dados, oferecendo uma camada de abstração segura e produtiva para interações com o PostgreSQL.
+- **Autenticação**: Implementação de autenticação e autorização com **JWT (JSON Web Tokens)**, garantindo segurança e controle de acesso às rotas protegidas.
+
 ## Diagrama do Banco de Dados
 
 ![Capturar](https://github.com/user-attachments/assets/54c4ead1-93ed-4a9a-b843-5fbd79648fa8)
