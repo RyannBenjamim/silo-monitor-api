@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Roles {
+  ADMIN
+  STANDARD
+}
+
+model Users {
+  id String @db.Char(36) @id 
+  username String @db.VarChar(200) @unique
+  password String @db.VarChar(250)
+  role Roles @default(STANDARD)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  silos Silos[] 
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+model Silos {
+  id String @db.Char(36) @id 
+  status Status @default(ACTIVE)
+  user_id String @db.Char(36)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  registers Registers[]
+  user Users @relation(fields: [user_id], references: [id])
+}
+
+model Registers {
+  id String @db.Char(36) @id
+  temperature Decimal @db.Decimal(5, 2)
+  humidity Decimal @db.Decimal(5, 2)
+  silo_id String @db.Char(36)
+  created_at DateTime @default(now())
+  silo Silos @relation(fields: [silo_id], references: [id])
+}

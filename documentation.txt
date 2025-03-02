@@ -1,0 +1,103 @@
+# --------------- DOCUMENTAÇÃO DA API DE PE3 --------------- #
+
+# ----------------- TABELAS DO BANCO DE DADOS ----------------- #
+
+  # USERS
+    - id CHAR(36) PRIMARY KEY
+    - username VARCHAR(200) NOT NULL 
+    - password VARCHAR(250) NOT NULL
+    - role ENUM('standard' | 'admin') NOT NULL
+    - created_at DEFAULT CURRENT_TIMESTAMP
+    - updated_at TIMESTAMP
+
+  # SILOS
+    - id CHAR(36) PRIMARY KEY
+    - status ENUM("active" | "inactive") NOT NULL
+    - user_id CHAR(36) NOT NULL REFERENCES USERS(id) ON DELETE CASCADE
+    - created_at DEFAULT CURRENT_TIMESTAMP
+    - updated_at TIMESTAMP
+
+  # REGISTERS
+    - id CHAR(36) PRIMARY KEY
+    - temperature DECIMAL(5,2) NOT NULL
+    - humidity DECIMAL(5,2) NOT NULL
+    - silo_id CHAR(36) NOT NULL REFERENCES SILOS(id) ON DELETE CASCADE
+    - created_at DEFAULT CURRENT_TIMESTAMP
+
+# ----------------- ROTAS DA API ----------------- #
+
+  # ROTAS RELACIONADAS AOS REGISTROS 
+    POST /example.url/registers                 -> Cria um registro (com silo_id no corpo)
+    GET /example.url/registers/silos/:silo_id   -> Lista todos ou apenas o último registro
+      QUERYS: ?last=true 
+
+  # ROTAS RELACIONADAS AOS SILOS
+    GET    /example.url/silos/:id               -> Obtém um silo específico
+    PUT    /example.url/silos/:id               -> Atualiza o status de um silo específico
+    DELETE /example.url/silos/:id               -> Remove um silo específico
+    POST   /example.url/silos                   -> Cria um silo (com user_id no corpo)
+    GET    /example.url/silos                   -> Lista todos os silos ou apenas os silos de um usuário
+      QUERYS: ?user_id=123
+
+  # ROTAS RELACIONADAS AOS USUÁRIOS
+    GET    /example.url/users                   -> Lista todos os usuários
+    GET    /example.url/users/:id               -> Obtém um usuário específico
+    POST   /example.url/users                   -> Cria um usuário
+    POST   /example.url/users/login             -> Efetua o login de um usuário
+    PUT    /example.url/users/:id               -> Atualiza um usuário específico
+    DELETE /example.url/users/:id               -> Remove um usuário específico
+
+# ----------------- ARQUIVOS PRESENTES NA API ----------------- #
+
+# 01 -> REPOSITORIES
+  # RegisterRepository
+    - getAllRegisters()                         -> retorna todos os registros do BD
+    - getLastRegister()                         -> retorna o último registro de um silo específico
+    - createRegister()                          -> salva um registro
+
+  # SiloRepository
+    - getAllSilos()                             -> retorna todos os silos do BD
+    - getSilo()                                 -> retorna um silo do BD
+    - createSilo()                              -> salva um silo
+    - updateStatus()                            -> atualiza o status do silo
+    - deleteSilo()                              -> deleta um silo
+
+  # UserRepository 
+    - getAllUsers()                             -> retorna todos os usuários do BD
+    - getUser()                                 -> retorna um usuário do BD
+    - getUserByUsername()                       -> retorna um usuário pelo username
+    - createUser()                              -> salva um usuário
+    - updateUser()                              -> atualiza os dados de um usuário
+    - deleteUser()                              -> deleta um usuário
+
+# 02 -> CONTROLLERS
+  # RegisterController
+    - index()                                   -> Lista todos os registros ou filtra por silo
+    - create()                                  -> Cria um novo registro para um silo
+
+  # SiloController
+    - show()                                    -> Obtém um silo específico pelo ID
+    - update()                                  -> Atualiza o status de um silo
+    - delete()                                  -> Remove um silo pelo ID
+    - create()                                  -> Cria um novo silo associado a um usuário
+    - index()                                   -> Lista todos os silos ou filtra por usuário
+
+  # UserController
+    - index()                                   -> Lista todos os usuários
+    - show()                                    -> Obtém um usuário específico pelo ID
+    - create()                                  -> Cria um novo usuário
+    - login()                                   -> Efetua o login e retorna um token de autenticação
+    - update()                                  -> Atualiza os dados de um usuário específico
+    - delete()                                  -> Remove um usuário pelo ID
+
+# 03 -> MIDDLEWARES
+  - AuthMiddleware()                            -> Middleware de autenticação, verifica e valida tokens JWT
+  - ErrorMiddleware()                           -> Middleware de tratamento de erros, captura e formata respostas de erro
+
+# 04 -> ERRORS
+ - HttpError                                    -> Classe de erro usada no ErrorMiddleware                      
+    
+# 05 -> DATABASE
+ - DB                                           -> Conexão com o banco de dados, definição do Prisma Client
+
+# 06 -> SERVER                                  -> Arquivo de definição e inicialização do servidor 
