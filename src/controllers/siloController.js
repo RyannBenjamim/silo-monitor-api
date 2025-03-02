@@ -35,8 +35,6 @@ const siloController = {
   // POST /silos
   create: async (req, res, next) => {
     try {
-      const { user_id, status } = req.body;
-
       const body = createSchema.safeParse(req.body);
 
       if (!body.success)
@@ -44,6 +42,8 @@ const siloController = {
           400,
           "Erro de validação: O campo obrigatório é { user_id, status }."
         );
+
+      const { user_id, status } = body.data;
 
       const userExists = await userRepository.getUser(user_id);
       if (!userExists) throw new HttpError(404, "Esse usuário não existe.");
