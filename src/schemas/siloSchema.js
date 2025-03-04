@@ -9,7 +9,7 @@ const createSchema = z
 
 const updateSchema = z
   .object({
-    status: z.enum(["active", "inactive"]).optional(),
+    status: z.enum(["active", "inactive"]),
   })
   .strict();
 

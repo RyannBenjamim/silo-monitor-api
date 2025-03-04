@@ -8,6 +8,10 @@ const registerController = {
   index: async (req, res, next) => {
     try {
       const { silo_id } = req.params;
+
+      const siloExists = await siloRepository.getSilo(silo_id);
+      if (!siloExists) throw new HttpError(404, "Esse silo não existe.");
+
       const { last } = req.query;
       const isLastRequested = last === "true";
 
@@ -26,6 +30,9 @@ const registerController = {
   // POST /registers
   create: async (req, res, next) => {
     try {
+      const siloExists = await siloRepository.getSilo(req.body.silo_id);
+      if (!siloExists) throw new HttpError(404, "Esse silo não existe.");
+
       const body = createSchema.safeParse(req.body);
 
       if (!body.success)
@@ -35,9 +42,6 @@ const registerController = {
         );
 
       const { silo_id, temperature, humidity } = body.data;
-
-      const siloExists = await siloRepository.getSilo(silo_id);
-      if (!siloExists) throw new HttpError(404, "Esse silo não existe.");
 
       const newRegister = await registerRepository.createRegister(silo_id, {
         temperature,

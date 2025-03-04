@@ -50,7 +50,7 @@ const siloRepository = {
   updateStatus: async (id, newStatus) => {
     const updatedSilo = await prisma.silos.update({
       data: {
-        status: newStatus,
+        status: newStatus?.toUpperCase(),
       },
       where: {
         id,

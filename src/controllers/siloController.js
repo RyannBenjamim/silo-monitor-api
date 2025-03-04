@@ -61,7 +61,9 @@ const siloController = {
   update: async (req, res, next) => {
     try {
       const { id } = req.params;
-      const { status } = req.body;
+
+      const siloExists = await siloRepository.getSilo(id);
+      if (!siloExists) throw new HttpError(404, "Esse silo não existe.");
 
       const body = updateSchema.safeParse(req.body);
 
@@ -71,8 +73,7 @@ const siloController = {
           "Erro de validação: O campo obrigatório é { status }."
         );
 
-      const siloExists = await siloRepository.getSilo(id);
-      if (!siloExists) throw new HttpError(404, "Esse silo não existe.");
+      const { status } = body.data;
 
       const updatedSilo = await siloRepository.updateStatus(id, status);
       res

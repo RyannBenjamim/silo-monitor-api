@@ -49,7 +49,11 @@ const userRepository = {
   // Atualiza um usuário
   updateUser: async (id, bodyUpdated) => {
     const updatedUser = await prisma.users.update({
-      data: bodyUpdated,
+      data: {
+        username: bodyUpdated.username,
+        password: bodyUpdated.password,
+        role: bodyUpdated.role?.toUpperCase(),
+      },
       where: {
         id,
       },
