@@ -8,6 +8,11 @@ const siloRepository = {
       where: {
         user_id,
       },
+      select: {
+        id: true,
+        status: true,
+        user_id: true,
+      },
     });
 
     return silos;
@@ -54,6 +59,11 @@ const siloRepository = {
       },
       where: {
         id,
+      },
+      select: {
+        id: true,
+        status: true,
+        user_id: true,
       },
     });
 

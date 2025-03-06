@@ -4,7 +4,14 @@ const User = require("../models/User");
 const userRepository = {
   // Retorna todos os usuários do bando de dados
   getAllUsers: async () => {
-    const users = await prisma.users.findMany();
+    const users = await prisma.users.findMany({
+      select: {
+        id: true,
+        username: true,
+        role: true,
+      },
+    });
+
     return users;
   },
 
@@ -13,6 +20,9 @@ const userRepository = {
     const user = await prisma.users.findUnique({
       where: {
         id,
+      },
+      select: {
+        password: false,
       },
     });
 
@@ -24,6 +34,9 @@ const userRepository = {
     const user = await prisma.users.findUnique({
       where: {
         username,
+      },
+      select: {
+        password: false,
       },
     });
 
