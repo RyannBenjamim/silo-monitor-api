@@ -76,10 +76,7 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
           {
               "id": "9131b5b6-cda6-4c2b-b365-a930512e0a43",
               "username": "johndoe",
-              "password": "$2b$10$3yGn/OqQl1TNzK8uXdGLNeuGFnEQ/xYznP406Uln13Kme7P5AQYNG",
               "role": "STANDARD",
-              "created_at": "2025-03-02T13:09:57.966Z",
-              "updated_at": "2025-03-02T13:09:57.966Z"
           }
       ]
     }
@@ -93,7 +90,6 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
       "data": {
           "id": "9131b5b6-cda6-4c2b-b365-a930512e0a43",
           "username": "johndoe",
-          "password": "$2b$10$3yGn/OqQl1TNzK8uXdGLNeuGFnEQ/xYznP406Uln13Kme7P5AQYNG",
           "role": "STANDARD",
           "created_at": "2025-03-02T13:09:57.966Z",
           "updated_at": "2025-03-02T13:09:57.966Z"
@@ -165,8 +161,6 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
               "id": "9d32b1e6-33c2-4ae9-9c3d-48fc26286984",
               "status": "ACTIVE",
               "user_id": "9131b5b6-cda6-4c2b-b365-a930512e0a43",
-              "created_at": "2025-03-02T13:21:39.033Z",
-              "updated_at": "2025-03-02T13:21:39.033Z"
           }
       ]
     }
@@ -203,8 +197,6 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
         "id": "9d32b1e6-33c2-4ae9-9c3d-48fc26286984",
         "status": "inactive",
         "user_id": "9131b5b6-cda6-4c2b-b365-a930512e0a43",
-        "created_at": "2024-08-15T12:56:44.239Z",
-        "updated_at": "2024-08-15T13:00:00.000Z"
       }
     }
     ```
