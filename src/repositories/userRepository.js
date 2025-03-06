@@ -40,14 +40,6 @@ const userRepository = {
       where: {
         username,
       },
-      select: {
-        id: true,
-        username: true,
-        role: true,
-        created_at: true,
-        updated_at: true,
-        password: false,
-      },
     });
 
     return user;
