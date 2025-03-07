@@ -7,11 +7,9 @@ const authMiddleware = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    return res
-      .status(401)
-      .json({
-        message: "Acesso negado, um token de autorização é obrigatório.",
-      });
+    return res.status(401).json({
+      message: "Acesso negado, um token de autorização é obrigatório.",
+    });
   }
 
   const token = authHeader.split(" ")[1];
@@ -24,9 +22,7 @@ const authMiddleware = async (req, res, next) => {
     const { username } = jwt.verify(token, tokenSecretKey);
 
     const user = await prisma.users.findUnique({
-      where: {
-        username: username,
-      },
+      where: { username },
       select: {
         role: true,
       },
