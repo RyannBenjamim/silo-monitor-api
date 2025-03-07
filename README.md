@@ -46,7 +46,7 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
 
 ### Usuários
 
-- **POST /users**
+- **POST /users** (⚠️ **Acesso exclusivo para admins**)
   - **Descrição**: Cria um novo usuário.
   - **Parâmetros (body)**:
     ```json
@@ -67,7 +67,7 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
     }
     ```
 
-- **GET /users**
+- **GET /users** (⚠️ **Acesso exclusivo para admins**)
   - **Descrição**: Lista todos os usuários.
   - **Exemplo de Resposta**:
     ```json
@@ -97,7 +97,7 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
     }
     ```
     
-- **PUT /users/:id**
+- **PUT /users/:id** (⚠️ **Acesso exclusivo para admins**)
   - **Descrição**: Atualiza os dados de um usuário específico com base no ID.
   - **Parâmetros (body)**:
     ```json
@@ -117,7 +117,7 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
     }
     ```
 
-- **DELETE /users/:id**
+- **DELETE /users/:id** (⚠️ **Acesso exclusivo para admins**)
   - **Descrição**: Remove um usuário específico com base no ID.
   - **Exemplo de Resposta**:
     ```json
@@ -131,7 +131,7 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
 
 ### Silos
 
-- **POST /silos**
+- **POST /silos** (⚠️ **Acesso exclusivo para admins**)
   - **Descrição**: Cria um novo silo.
   - **Parâmetros (body)**:
     ```json
@@ -181,7 +181,7 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
     }
     ```
 
-- **PUT /silos/:id**
+- **PUT /silos/:id** (⚠️ **Acesso exclusivo para admins**)
   - **Descrição**: Atualiza o status de um silo específico com base no ID.
   - **Parâmetros (body)**:
     ```json
@@ -201,7 +201,7 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
     }
     ```
 
-- **DELETE /silos/:id**
+- **DELETE /silos/:id** (⚠️ **Acesso exclusivo para admins**)
   - **Descrição**: Remove um silo específico com base no ID.
   - **Exemplo de Resposta**:
     ```json
@@ -253,6 +253,10 @@ Esta API foi desenvolvida para gerenciar a temperatura e a umidade em silos, per
       ]
     }
     ```
+    
+## Observações
+
+Para acessar rotas protegidas, o usuário deve enviar um token JWT válido no cabeçalho da requisição. Algumas operações são restritas apenas a usuários com a role **admin**, garantindo maior controle sobre a API.
 
 ## Como Executar o Projeto
 
