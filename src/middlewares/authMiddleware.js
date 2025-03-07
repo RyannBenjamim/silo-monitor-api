@@ -9,7 +9,9 @@ const authMiddleware = async (req, res, next) => {
   if (!authHeader) {
     return res
       .status(401)
-      .json({ message: "Token de autorização é obrigatório." });
+      .json({
+        message: "Acesso negado, um token de autorização é obrigatório.",
+      });
   }
 
   const token = authHeader.split(" ")[1];
