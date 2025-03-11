@@ -19,21 +19,21 @@ router.get("/api/ok", (req, res) =>
 
 // Rotas relacionadas aos registros
 router.post("/registers", registerController.create);
-router.get("/registers/silos/:silo_id", authMiddleware, registerController.index);
+router.get("/registers/silos/:silo_id", registerController.index);
 
 // Rotas relacionadas aos silos
-router.get("/silos/:id", authMiddleware, siloController.show);
-router.put("/silos/:id", authMiddleware, adminMiddleware, siloController.update);
-router.delete("/silos/:id", authMiddleware, adminMiddleware, siloController.delete);
-router.post("/silos", authMiddleware, adminMiddleware, siloController.create);
-router.get("/silos", authMiddleware, siloController.index);
+router.get("/silos/:id", siloController.show);
+router.put("/silos/:id", siloController.update);
+router.delete("/silos/:id", siloController.delete);
+router.post("/silos", siloController.create);
+router.get("/silos", siloController.index);
 
 // Rotas relacionadas aos usuários
-router.get("/users", authMiddleware, adminMiddleware, userController.index);
-router.get("/users/:id", authMiddleware, userController.show);
-router.post("/users", authMiddleware, adminMiddleware, userController.create);
+router.get("/users", userController.index);
+router.get("/users/:id", userController.show);
+router.post("/users", userController.create);
 router.post("/users/login", userController.login);
-router.put("/users/:id", authMiddleware, adminMiddleware, userController.update);
-router.delete("/users/:id", authMiddleware, adminMiddleware, userController.delete);
+router.put("/users/:id", userController.update);
+router.delete("/users/:id", userController.delete);
 
 module.exports = router;
