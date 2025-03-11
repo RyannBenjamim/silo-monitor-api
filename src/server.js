@@ -1,9 +1,15 @@
 require("dotenv").config();
 const express = require("express");
 const routes = require("./routes");
+const cors = require("cors");
 const errorMiddleware = require("./middlewares/errorMiddleware");
 
 const app = express();
+
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"]
+}));
 
 app.use(express.json());
 app.use(routes);
