@@ -80,7 +80,7 @@ const userController = {
       if (!user)
         throw new HttpError(
           404,
-          " Não existe nenhum usuário com esse username no sistema."
+          "Usuário não encontrado."
         );
 
       const isSamePassword = await bcrypt.compare(password, user.password);
