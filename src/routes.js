@@ -29,11 +29,11 @@ router.post("/silos", authMiddleware, adminMiddleware, siloController.create);
 router.get("/silos", authMiddleware, siloController.index);
 
 // Rotas relacionadas aos usuários
-router.get("/users", userController.index);
+router.get("/users", authMiddleware, adminMiddleware, userController.index);
 router.get("/users/:id", authMiddleware, userController.show);
-router.post("/users", userController.create);
+router.post("/users", authMiddleware, adminMiddleware, userController.create);
 router.post("/users/login", userController.login);
-router.put("/users/:id", userController.update);
+router.put("/users/:id", authMiddleware, adminMiddleware, userController.update);
 router.delete("/users/:id", authMiddleware, adminMiddleware, userController.delete);
 
 module.exports = router;
