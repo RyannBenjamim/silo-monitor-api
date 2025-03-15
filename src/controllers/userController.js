@@ -14,8 +14,24 @@ const userController = {
   // GET /users
   index: async (req, res, next) => {
     try {
-      const users = await userRepository.getAllUsers();
-      res.json({ data: users });
+      const { username } = req.query;
+
+      if (!username) {
+        const users = await userRepository.getAllUsers();
+        return res.json({ data: users });
+      }
+
+      const user = await userRepository.getUserByUsername(username)
+
+      if (!user)
+        throw new HttpError(
+          404,
+          "Usuário não encontrado."
+        );
+
+      res.json({
+        data: [{ id: user.id, username: user.username, role: user.role }] 
+      });
     } catch (error) {
       next(error);
     }
