@@ -13,7 +13,7 @@ const siloController = {
       if (!userExists) throw new HttpError(404, "Esse usuário não existe.");
 
       const silos = await siloRepository.getAllSilos(user_id);
-      res.json({ data: silos });
+      res.json({ total: silos.count, data: silos.data });
     } catch (error) {
       next(error);
     }

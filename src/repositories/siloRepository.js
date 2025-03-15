@@ -4,18 +4,19 @@ const Silo = require("../models/Silo");
 const siloRepository = {
   // Retorna todos os silos de um usuário
   getAllSilos: async (user_id) => {
-    const silos = await prisma.silos.findMany({
-      where: {
-        user_id,
-      },
-      select: {
-        id: true,
-        status: true,
-        user_id: true,
-      },
-    });
-
-    return silos;
+    const [data, count] = await Promise.all([
+      prisma.silos.findMany({
+        where: { user_id },
+        select: { 
+          id: true, 
+          status: true, 
+          user_id: true 
+        },
+      }),
+      prisma.silos.count({ where: { user_id } }),
+    ]);
+  
+    return { data, count };
   },
 
   // Retorna um silo em específico
